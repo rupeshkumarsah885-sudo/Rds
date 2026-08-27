@@ -6,20 +6,19 @@
     <title>स्मार्ट स्कूल एवं फीस मैनेजमेंट सिस्टम</title>
     <style>
         :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --success-color: #27ae60;
-            --danger-color: #e74c3c;
-            --warning-color: #f39c12;
-            --light-bg: #f8f9fa;
+            --primary-color: #1a365d;
+            --secondary-color: #2b6cb0;
+            --success-color: #2f855a;
+            --danger-color: #c53030;
+            --warning-color: #d69e2e;
+            --light-bg: #f7fafc;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: var(--light-bg); color: #333; padding-bottom: 50px; padding-top: 65px; }
+        body { background-color: var(--light-bg); color: #2d3748; padding-bottom: 50px; padding-top: 65px; }
         
-        /* Login Overlay */
         #loginOverlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(44, 62, 80, 0.95); z-index: 9999;
+            background: rgba(26, 54, 93, 0.95); z-index: 9999;
             display: flex; justify-content: center; align-items: center;
         }
         .login-card {
@@ -27,12 +26,10 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center;
         }
         .login-card h2 { margin-bottom: 20px; color: var(--primary-color); }
-        .login-card input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 4px; font-size: 16px; }
+        .login-card input { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 16px; }
         .login-card button { width: 100%; padding: 12px; background: var(--secondary-color); color: white; border: none; border-radius: 4px; font-size: 16px; cursor: pointer; font-weight: bold; }
-        .login-card button:hover { background: #2980b9; }
         .login-error { color: var(--danger-color); font-size: 14px; margin-top: 10px; }
 
-        /* Header & UI Styles */
         header { 
             position: fixed; top: 0; left: 0; width: 100%; height: 60px;
             background: var(--primary-color); color: white; padding: 0 15px; 
@@ -42,10 +39,9 @@
         .header-left { display: flex; align-items: center; gap: 12px; }
         .hamburger-btn { background: none; border: none; color: white; font-size: 24px; cursor: pointer; padding: 5px; }
         .header-title h1 { font-size: 16px; }
-        .header-title p { font-size: 10px; color: #bdc3c7; }
+        .header-title p { font-size: 10px; color: #e2e8f0; }
         .logout-btn { background: var(--danger-color); color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; }
 
-        /* Sidebar Navigation Drawer */
         #sidebarDrawer {
             position: fixed; top: 0; left: -280px; width: 280px; height: 100%;
             background: white; z-index: 2000; box-shadow: 3px 0 10px rgba(0,0,0,0.3);
@@ -57,10 +53,10 @@
         .close-sidebar { background: none; border: none; color: white; font-size: 22px; cursor: pointer; }
         .sidebar-menu { overflow-y: auto; flex-grow: 1; padding: 10px 0; }
         .sidebar-item { 
-            padding: 12px 20px; display: block; color: #333; text-decoration: none; font-size: 14px; 
-            font-weight: 600; border-bottom: 1px solid #f1f2f6; cursor: pointer; 
+            padding: 12px 20px; display: block; color: #2d3748; text-decoration: none; font-size: 14px; 
+            font-weight: 600; border-bottom: 1px solid #edf2f7; cursor: pointer; 
         }
-        .sidebar-item:hover, .sidebar-item.active { background: #ebf5fb; color: var(--secondary-color); border-left: 4px solid var(--secondary-color); }
+        .sidebar-item:hover, .sidebar-item.active { background: #ebf8ff; color: var(--secondary-color); border-left: 4px solid var(--secondary-color); }
         
         #sidebarBackdrop {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
@@ -73,51 +69,98 @@
 
         .dashboard-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; margin-bottom: 20px; }
         .card { background: white; padding: 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid var(--secondary-color); cursor: pointer; }
-        .card h3 { font-size: 14px; color: #7f8c8d; margin-bottom: 8px; }
+        .card h3 { font-size: 14px; color: #718096; margin-bottom: 8px; }
         .card p { font-size: 22px; font-weight: bold; color: var(--primary-color); }
 
         .form-container { background: white; padding: 20px; border-radius: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
         .form-group { margin-bottom: 15px; }
         .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 5px; }
-        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        .form-group input, .form-group select, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 14px; }
         button[type="submit"], .form-container button { background: var(--success-color); color: white; border: none; padding: 10px 20px; border-radius: 4px; font-size: 14px; cursor: pointer; font-weight: bold; }
 
-        .table-responsive { width: 100%; overflow-x: auto; margin-top: 15px; }
-        table { width: 100%; border-collapse: collapse; background: white; font-size: 13px; }
-        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; white-space: nowrap; }
-        th { background: #f1f2f6; color: #2c3e50; }
-        .clickable-name { color: var(--secondary-color); cursor: pointer; font-weight: bold; text-decoration: underline; }
-        
-        .student-thumb { width: 32px; height: 32px; border-radius: 50%; object-fit: cover; border: 1px solid #ccc; flex-shrink: 0; }
-        .student-avatar-placeholder { width: 32px; height: 32px; border-radius: 50%; background: #bdc3c7; display: flex; align-items: center; justify-content: center; color: white; font-size: 12px; font-weight: bold; flex-shrink: 0; }
-        .student-name-cell { display: flex; align-items: center; gap: 8px; }
+        .student-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .student-box {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-top: 4px solid var(--secondary-color);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .student-box-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid #edf2f7;
+            padding-bottom: 8px;
+        }
+        .student-thumb { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 1px solid #cbd5e0; flex-shrink: 0; }
+        .student-avatar-placeholder { width: 40px; height: 40px; border-radius: 50%; background: #a0aec0; display: flex; align-items: center; justify-content: center; color: white; font-size: 16px; font-weight: bold; flex-shrink: 0; }
+        .student-box-title { font-size: 15px; font-weight: bold; color: var(--primary-color); cursor: pointer; text-decoration: underline; }
+        .student-box-info { font-size: 13px; color: #4a5568; display: flex; justify-content: space-between; }
+        .student-box-footer {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            margin-top: 5px;
+            border-top: 1px solid #edf2f7;
+            padding-top: 8px;
+        }
 
-        .btn-group { display: flex; gap: 5px; flex-wrap: wrap; align-items: center; }
-        .fee-btn { background: var(--success-color); color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
-        .whatsapp-btn { background: #25D366; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
-        .sms-btn { background: #34495e; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
-        .edit-btn { background: var(--warning-color); color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
-        .close-btn { background: var(--danger-color); color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; }
+        .filter-bar {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+            background: #edf2f7;
+            padding: 10px;
+            border-radius: 6px;
+        }
+        .filter-bar input {
+            flex-grow: 1;
+            min-width: 140px;
+            padding: 8px;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+
+        .fee-btn { background: var(--success-color); color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        .whatsapp-btn { background: #25D366; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        .sms-btn { background: #4a5568; color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        .edit-btn { background: var(--warning-color); color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        .close-btn { background: var(--danger-color); color: white; border: none; padding: 6px 10px; border-radius: 4px; cursor: pointer; font-size: 12px; font-weight: bold; }
+        .action-main-btn { background: var(--secondary-color); color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px; }
 
         .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0.5); justify-content: center; align-items: center; z-index: 2500; }
-        .modal-content { background: white; padding: 20px; border-radius: 6px; width: 90%; max-width: 500px; max-height: 90vh; overflow-y: auto; position: relative; }
-        .close-modal { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #aaa; }
+        .modal-content { background: white; padding: 20px; border-radius: 6px; width: 90%; max-width: 600px; max-height: 90vh; overflow-y: auto; position: relative; }
+        .close-modal { position: absolute; top: 10px; right: 15px; font-size: 22px; cursor: pointer; color: #a0aec0; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 13px; }
+        th, td { border: 1px solid #cbd5e0; padding: 8px; text-align: left; }
+        th { background: #edf2f7; }
+        .table-responsive { overflow-x: auto; }
     </style>
 </head>
 <body>
 
-    <!-- Login & Single Device Verification Overlay -->
     <div id="loginOverlay">
         <div class="login-card">
             <h2>सेंटर लॉगिन</h2>
-            <p style="font-size: 13px; color: #666; margin-bottom: 15px;">यह सिस्टम सिंगल-डिवाइस सुरक्षित है।</p>
+            <p style="font-size: 13px; color: #718096; margin-bottom: 15px;">यह सिस्टम सिंगल-डिवाइस सुरक्षित है।</p>
             <input type="text" id="clientCodeInput" placeholder="अपना सेंटर कोड दर्ज करें">
             <button onclick="verifyClientCode()">लॉगिन करें</button>
             <div id="loginError" class="login-error"></div>
         </div>
     </div>
 
-    <!-- Sticky Top Header -->
     <header>
         <div class="header-left">
             <button class="hamburger-btn" onclick="toggleSidebar()">☰</button>
@@ -131,7 +174,6 @@
         </div>
     </header>
 
-    <!-- Sidebar Navigation Drawer -->
     <div id="sidebarBackdrop" onclick="toggleSidebar()"></div>
     <div id="sidebarDrawer">
         <div class="sidebar-header">
@@ -141,16 +183,15 @@
         <div class="sidebar-menu">
             <a class="sidebar-item active" onclick="navigateTo('dashboard')">📊 डैशबोर्ड</a>
             <a class="sidebar-item" onclick="navigateTo('admission')">📝 नया एडमिशन</a>
+            <a class="sidebar-item" onclick="navigateTo('importExport')">📥 एक्सेल इम्पोर्ट (अपलोड)</a>
             <a class="sidebar-item" onclick="navigateTo('students')">👥 छात्र सूची</a>
             <a class="sidebar-item" onclick="navigateTo('dues')">💰 फीस बकाया</a>
             <a class="sidebar-item" onclick="navigateTo('collectedFees')">💵 जमा फीस इतिहास</a>
             <a class="sidebar-item" onclick="navigateTo('closedStudents')">❌ क्लोज्ड छात्र</a>
-            <a class="sidebar-item" onclick="navigateTo('imageAI')">🎨 AI इमेज जनरेटर</a>
             <a class="sidebar-item" onclick="navigateTo('settings')">⚙️ सेटिंग्स</a>
         </div>
     </div>
 
-    <!-- DASHBOARD SECTION -->
     <div id="dashboard" class="section active">
         <h2>डैशबोर्ड ओवरव्यू</h2>
         <div class="dashboard-grid" style="margin-top: 15px;">
@@ -173,7 +214,6 @@
         </div>
     </div>
 
-    <!-- ADMISSION SECTION -->
     <div id="admission" class="section">
         <h2 id="formTitle">छात्र एडमिशन एवं रजिस्ट्रेशन फॉर्म</h2>
         <div class="form-container" style="margin-top: 15px;">
@@ -187,6 +227,11 @@
                     <label>गार्जियन / पिता का नाम *</label>
                     <input type="text" id="guardianName" required>
                 </div>
+                <!-- नया वैकल्पिक फील्ड: माता का नाम -->
+                <div class="form-group">
+                    <label>माता का नाम (वैकल्पिक)</label>
+                    <input type="text" id="motherName">
+                </div>
                 <div class="form-group">
                     <label>मोबाइल नंबर (व्हाट्सएप/एसएमएस) *</label>
                     <input type="tel" id="mobileNumber" pattern="[0-9]{10}" placeholder="10 अंकों का नंबर" required>
@@ -194,6 +239,21 @@
                 <div class="form-group">
                     <label>आईडी नंबर / रोल नंबर (वैकल्पिक)</label>
                     <input type="text" id="idNumber">
+                </div>
+                <!-- नया वैकल्पिक फील्ड: आईडी प्रूफ / आधार कार्ड -->
+                <div class="form-group">
+                    <label>आईडी प्रूफ / आधार कार्ड नंबर (वैकल्पिक)</label>
+                    <input type="text" id="idProof" placeholder="आधार कार्ड नंबर या अन्य आईडी प्रूफ">
+                </div>
+                <!-- नया वैकल्पिक फील्ड: बैंक IFSC कोड -->
+                <div class="form-group">
+                    <label>बैंक IFSC कोड (वैकल्पिक)</label>
+                    <input type="text" id="bankIfsc" placeholder="जैसे: SBIN0001234" style="text-transform: uppercase;">
+                </div>
+                <!-- नया वैकल्पिक फील्ड: बैंक खाता संख्या -->
+                <div class="form-group">
+                    <label>बैंक खाता संख्या (वैकल्पिक)</label>
+                    <input type="text" id="bankAccount" placeholder="बैंक अकाउंट नंबर">
                 </div>
                 <div class="form-group">
                     <label>क्लास / बैच *</label>
@@ -203,117 +263,98 @@
                     <label>मासिक फीस (₹) *</label>
                     <input type="number" id="monthlyFee" required>
                 </div>
+                
+                <div style="background: #edf2f7; padding: 12px; border-radius: 6px; margin-bottom: 15px; border-left: 4px solid var(--warning-color);">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                        <label style="font-size: 13px; font-weight: bold; color: var(--primary-color);">📌 अन्य / एक्सटर्नल फीस (ड्रेस, किताब, आई-कार्ड आदि)</label>
+                        <button type="button" onclick="addOtherFeeRow()" style="background: var(--secondary-color); color: white; border: none; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: bold;">+ और जोड़ें</button>
+                    </div>
+                    <div id="otherFeesContainer" style="display: flex; flex-direction: column; gap: 8px;"></div>
+                </div>
+
                 <div class="form-group">
                     <label>जन्म तिथि (DOB)</label>
                     <input type="date" id="dob">
                 </div>
                 <div class="form-group">
-                    <label>ज्वाइनिंग / बिलिंग तिथि *</label>
+                    <label>ज्वाइनिंग / शुरुआती बिलिंग तिथि *</label>
                     <input type="date" id="joiningDate" required>
                 </div>
                 <div class="form-group">
                     <label>छात्र की फोटो (कैमरा या गैलरी से चुनें)</label>
-                    <input type="file" id="studentPhotoInput" accept="image/*" capture="environment">
+                    <input type="file" id="studentPhotoInput" accept="image/*">
                 </div>
                 <button type="submit" id="formSubmitBtn">रजिस्टर करें और सेव करें</button>
-                <button type="button" id="cancelEditBtn" style="background: #7f8c8d; display: none; margin-left: 10px;" onclick="resetForm()">रद्द करें</button>
+                <button type="button" id="cancelEditBtn" style="background: #718096; display: none; margin-left: 10px;" onclick="resetForm()">रद्द करें</button>
             </form>
         </div>
     </div>
 
-    <!-- STUDENTS SECTION -->
+    <div id="importExport" class="section">
+        <h2>एक्सेल शीट से डेटा अपलोड (Bulk Import)</h2>
+        <div class="form-container" style="margin-top: 15px;">
+            <p style="font-size: 13px; color: #4a5568; margin-bottom: 15px; line-height: 1.6;">
+                अपनी CSV फाइल यहाँ अपलोड करें।
+            </p>
+            <div class="form-group">
+                <label>CSV फाइल चुनें *</label>
+                <input type="file" id="csvFileInput" accept=".csv">
+            </div>
+            <button class="action-main-btn" onclick="processExcelUpload()">डेटा अपलोड और सेव करें</button>
+        </div>
+    </div>
+
+    <!-- 1. छात्र सूची -->
     <div id="students" class="section">
         <h2>सभी एक्टिव छात्र सूची</h2>
         <div class="form-container" style="margin-top: 15px;">
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; justify-content: space-between; align-items: center;">
-                <div style="display: flex; gap: 10px; flex-grow: 1; flex-wrap: wrap;">
-                    <input type="text" id="searchByName" placeholder="नाम से खोजें..." onkeyup="filterStudents()" style="flex-grow: 1; min-width: 150px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                    <input type="text" id="filterByClass" placeholder="क्लास से फिल्टर..." onkeyup="filterStudents()" style="width: 160px; padding: 8px; border: 1px solid #ccc; border-radius: 4px;">
-                </div>
-                <div>
-                    <button onclick="downloadStudentsExcel()" style="background: var(--success-color); color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px;">📥 Excel डाउनलोड</button>
-                </div>
+            <div class="filter-bar">
+                <input type="text" id="searchByName_students" placeholder="🔍 नाम से खोजें..." onkeyup="renderAll()">
+                <input type="text" id="filterByClass_students" placeholder="🏫 क्लास से फिल्टर..." onkeyup="renderAll()">
+                <input type="text" id="filterByRoll_students" placeholder="🆔 रोल/आईडी से खोजें..." onkeyup="renderAll()">
             </div>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>छात्र का नाम</th>
-                            <th>गार्जियन</th>
-                            <th>मोबाइल</th>
-                            <th>क्लास</th>
-                            <th>मासिक फीस</th>
-                            <th>बकाया (Due)</th>
-                            <th>कुल जमा</th>
-                            <th>एक्शन</th>
-                        </tr>
-                    </thead>
-                    <tbody id="studentTableBody"></tbody>
-                </table>
-            </div>
+            <div id="studentCardsContainer" class="student-cards-grid"></div>
         </div>
     </div>
 
-    <!-- DUES SECTION -->
+    <!-- 2. फीस बकाया -->
     <div id="dues" class="section">
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 10px;">
             <h2>फीस बकाया वाले छात्र</h2>
-            <button onclick="openDuesGoogleSheet()" style="background: var(--success-color); color: white; border: none; padding: 8px 14px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px;">📊 गूगल शीट खोलें</button>
+            <button onclick="openDuesGoogleSheet()" class="action-main-btn" style="background: var(--success-color);">📊 गूगल शीट खोलें</button>
         </div>
         <div class="form-container" style="margin-top: 15px;">
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>छात्र का नाम</th>
-                            <th>गार्जियन</th>
-                            <th>मोबाइल</th>
-                            <th>क्लास</th>
-                            <th>मासिक फीस</th>
-                            <th>कुल बकाया राशि</th>
-                            <th>एक्शन</th>
-                        </tr>
-                    </thead>
-                    <tbody id="dueTableBody"></tbody>
-                </table>
+            <div class="filter-bar">
+                <input type="text" id="searchByName_dues" placeholder="🔍 नाम से खोजें..." onkeyup="renderAll()">
+                <input type="text" id="filterByClass_dues" placeholder="🏫 क्लास से फिल्टर..." onkeyup="renderAll()">
+                <input type="text" id="filterByRoll_dues" placeholder="🆔 रोल/आईडी से खोजें..." onkeyup="renderAll()">
             </div>
+            <div id="dueCardsContainer" class="student-cards-grid"></div>
         </div>
     </div>
 
-    <!-- COLLECTED FEES SECTION -->
+    <!-- 3. जमा फीस इतिहास -->
     <div id="collectedFees" class="section">
         <h2>जमा फीस इतिहास (Collected Fees)</h2>
         <div class="form-container" style="margin-top: 15px;">
-            <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px; align-items: flex-end;">
-                <div>
-                    <label style="font-size: 12px;">शुरू तारीख:</label>
-                    <input type="date" id="filterFromDate" onchange="filterCollectedFees()" style="padding: 6px;">
-                </div>
-                <div>
-                    <label style="font-size: 12px;">अंतिम तारीख:</label>
-                    <input type="date" id="filterToDate" onchange="filterCollectedFees()" style="padding: 6px;">
-                </div>
-                <div style="flex-grow: 1;">
-                    <label style="font-size: 12px;">छात्र खोजें:</label>
-                    <input type="text" id="filterCollectedSearch" placeholder="नाम से खोजें..." onkeyup="filterCollectedFees()" style="padding: 6px; width: 100%;">
-                </div>
-                <div style="display: flex; gap: 5px;">
-                    <button onclick="resetCollectedFilter()" style="background-color: #7f8c8d; padding: 8px 10px;">रीसेट</button>
-                    <button onclick="downloadCollectedFeesExcel()" style="background: var(--success-color); color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px;">📥 Excel डाउनलोड</button>
-                </div>
+            <div class="filter-bar">
+                <input type="text" id="searchByName_collected" placeholder="🔍 नाम से खोजें..." onkeyup="renderAll()">
+                <input type="text" id="filterByClass_collected" placeholder="🏫 क्लास से फिल्टर..." onkeyup="renderAll()">
+                <input type="text" id="filterByRoll_collected" placeholder="🆔 रोल/आईडी से खोजें..." onkeyup="renderAll()">
             </div>
-            <p id="filteredTotalDisplay" style="font-weight: bold; margin-bottom: 10px; color: var(--success-color);"></p>
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
                             <th>दिनांक</th>
+                            <th>रोल/आईडी</th>
                             <th>छात्र का नाम</th>
                             <th>गार्जियन</th>
                             <th>मोबाइल</th>
-                            <th>क्लास / बैच</th>
+                            <th>क्लास</th>
+                            <th>भुगतान प्रकार</th>
                             <th>जमा राशि</th>
-                            <th>रसीद भेजें</th>
+                            <th>WhatsApp</th>
                         </tr>
                     </thead>
                     <tbody id="collectedTableBody"></tbody>
@@ -322,21 +363,27 @@
         </div>
     </div>
 
-    <!-- CLOSED STUDENTS SECTION -->
+    <!-- 4. क्लोज्ड छात्र -->
     <div id="closedStudents" class="section">
         <h2>क्लोज्ड (ड्रॉपआउट) छात्र</h2>
         <div class="form-container" style="margin-top: 15px;">
+            <div class="filter-bar">
+                <input type="text" id="searchByName_closed" placeholder="🔍 नाम से खोजें..." onkeyup="renderAll()">
+                <input type="text" id="filterByClass_closed" placeholder="🏫 क्लास से फिल्टर..." onkeyup="renderAll()">
+                <input type="text" id="filterByRoll_closed" placeholder="🆔 रोल/आईडी से खोजें..." onkeyup="renderAll()">
+            </div>
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
+                            <th>रोल/आईडी</th>
                             <th>नाम</th>
                             <th>गार्जियन</th>
                             <th>मोबाइल</th>
-                            <th>क्लास / बैच</th>
+                            <th>क्लास</th>
                             <th>क्लोजिंग तिथि</th>
                             <th>बकाया राशि</th>
-                            <th>एक्शन</th>
+                            <th>WhatsApp रिमाइंडर</th>
                         </tr>
                     </thead>
                     <tbody id="closedTableBody"></tbody>
@@ -345,20 +392,6 @@
         </div>
     </div>
 
-    <!-- AI IMAGE GENERATOR SECTION -->
-    <div id="imageAI" class="section">
-        <h2>AI इमेज जनरेटर</h2>
-        <div class="form-container" style="margin-top: 15px;">
-            <div class="form-group">
-                <label>इमेज का विवरण (Prompt) दर्ज करें:</label>
-                <textarea id="imagePrompt" rows="3" placeholder="जैसे: School children playing..."></textarea>
-            </div>
-            <button onclick="generateImage()">तस्वीर बनाएं</button>
-            <div id="imageResult" style="margin-top: 15px; text-align: center;"></div>
-        </div>
-    </div>
-
-    <!-- SETTINGS SECTION -->
     <div id="settings" class="section">
         <h2>संस्थान सेटिंग्स एवं मैसेज टेम्पलेट</h2>
         <div class="form-container" style="margin-top: 15px;">
@@ -376,19 +409,18 @@
                     <input type="url" id="settingGoogleSheetUrl" placeholder="https://docs.google.com/spreadsheets/d/...">
                 </div>
                 <div class="form-group">
-                    <label>1. जमा फीस रसीद टेम्पलेट (Payment Receipt)</label>
-                    <textarea id="settingReceiptTemplate" rows="5"></textarea>
+                    <label>1. जमा फीस रसीद टेम्पलेट (Paid Bill)</label>
+                    <textarea id="settingReceiptTemplate" rows="9"></textarea>
                 </div>
                 <div class="form-group">
-                    <label>2. फीस बकाया रिमाइंडर टेम्पलेट (Fee Reminder)</label>
-                    <textarea id="settingReminderTemplate" rows="5"></textarea>
+                    <label>2. फीस बकाया रिमाइंडर टेम्पलेट (Reminder Bill)</label>
+                    <textarea id="settingReminderTemplate" rows="9"></textarea>
                 </div>
                 <button type="submit">सेटिंग्स सेव करें</button>
             </form>
         </div>
     </div>
 
-    <!-- Student Profile Modal -->
     <div id="studentModal" class="modal">
         <div class="modal-content">
             <span class="close-modal" onclick="closeStudentModal()">&times;</span>
@@ -396,20 +428,90 @@
         </div>
     </div>
 
+    <div id="feeModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeFeeModal()">&times;</span>
+            <h3>फीस जमा करें</h3>
+            <form id="feeForm" onsubmit="submitFee(event)" style="margin-top: 15px;">
+                <input type="hidden" id="feeStudentId">
+                
+                <div class="form-group">
+                    <label>भुगतान का प्रकार चुनें *</label>
+                    <select id="feeTypeSelect" onchange="toggleFeeTypeFields()" required>
+                        <option value="monthly">मासिक फीस (Monthly Fees)</option>
+                        <option value="other">अन्य बकाया / वन-टाइम चार्ज (Other Dues)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="otherFeeSelectGroup" style="display: none;">
+                    <label>कौन सी अन्य फीस जमा करनी है? चुनें *</label>
+                    <select id="paidOtherFeeDropdown"></select>
+                </div>
+
+                <div class="form-group">
+                    <label>जमा राशि (₹) *</label>
+                    <input type="number" id="payAmount" required>
+                </div>
+                <div class="form-group">
+                    <label>भुगतान दिनांक *</label>
+                    <input type="date" id="payDate" required>
+                </div>
+                <button type="submit">जमा राशि सेव करें</button>
+            </form>
+        </div>
+    </div>
+
     <script>
-        // यहाँ आपका Google Apps Script Web App URL व्यवस्थित रूप से सेट कर दिया गया है
         const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbxm29cIr93WEwliR4Yh8pI01l6ALNn780ZXu0C3v8yocLQ9YRe85tmI_Q4faWPZWYVT/exec";
 
         let students = JSON.parse(localStorage.getItem('school_students')) || [];
+        
+        let defaultReceiptTemplate = "🏫 🌟 *[SchoolName]* 🌟 🏫\n" +
+            "═══════════════════════\n" +
+            "📌 **फीस जमा रसीद (Official Fee Receipt)**\n" +
+            "👤 छात्र का नाम: *[StudentName]*\n" +
+            "🎓 क्लास / बैच: *[Class]*\n" +
+            "📅 भुगतान दिनांक: *[Date]*\n" +
+            "═══════════════════════\n" +
+            "🔸 **[Section 1: मासिक फीस विवरण]**\n" +
+            "• अवधि: *[FromDate] से [ToDate]*\n" +
+            "• जमा राशि: *₹[Amount]*\n" +
+            "---------------------------------------\n" +
+            "🔸 **[Section 2: अन्य बकाया / शुल्क विवरण]**\n" +
+            "*[OtherFeeDetails]*\n" +
+            "═══════════════════════\n" +
+            "💰 **कुल योग बिल (Total Due Status): ₹[TotalDue]**\n" +
+            "🙏 धन्यवाद! आपके सहयोग के लिए आभार।\n" +
+            "🏫 *[SchoolName] Management* 🏫";
+
+        let defaultReminderTemplate = "🏫 🌟 *[SchoolName]* 🌟 🏫\n" +
+            "═══════════════════════\n" +
+            "⚠️ **फीस बकाया रिमाइंडर (Fee Due Alert)**\n" +
+            "प्रिय गार्जियन,\n" +
+            "छात्र *[StudentName]* (क्लास: *[Class]*) का बकाया विवरण नीचे दिया गया है:\n" +
+            "═══════════════════════\n" +
+            "🔸 **[Section 1: मासिक फीस अवधि]**\n" +
+            "• बकाया अवधि: *[FromDate] से [ToDate]*\n" +
+            "---------------------------------------\n" +
+            "🔸 **[Section 2: अन्य बकाया विवरण]**\n" +
+            "*[OtherFeeDetails]*\n" +
+            "═══════════════════════\n" +
+            "💰 **कुल योग बिल (Total Due): ₹[TotalDue]**\n" +
+            "कृपया समय पर फीस जमा करने की कृपा करें।\n" +
+            "🙏 धन्यवाद!\n" +
+            "🏫 *[SchoolName] Management* 🏫";
+
         let schoolInfo = JSON.parse(localStorage.getItem('school_settings')) || {
             name: "स्मार्ट स्कूल मैनेजमेंट",
             mobile: "9876543210",
             googleSheetUrl: "",
-            receiptTemplate: "🏫 *[SchoolName]* 🏫\n--------------------------------\n📢 *फीस जमा रसीद*\n👤 छात्र: [StudentName]\n💵 जमा राशि: ₹[Amount]\n💰 कुल शेष: ₹[TotalDue]\n--------------------------------\nधन्यवाद!",
-            reminderTemplate: "🏫 *[SchoolName]* 🏫\nप्रिय गार्जियन, छात्र [StudentName] की कुल बकाया फीस ₹[TotalDue] है। कृपया जमा करें।"
+            receiptTemplate: defaultReceiptTemplate,
+            reminderTemplate: defaultReminderTemplate
         };
 
-        // परमानेंट डिवाइस UUID जनरेशन (लोकल स्टोरेज में फिक्स)
+        if(!schoolInfo.receiptTemplate) schoolInfo.receiptTemplate = defaultReceiptTemplate;
+        if(!schoolInfo.reminderTemplate) schoolInfo.reminderTemplate = defaultReminderTemplate;
+
         let deviceUuid = localStorage.getItem('secure_device_uuid');
         if (!deviceUuid) {
             deviceUuid = 'dev_' + Math.random().toString(36).substring(2) + Date.now().toString(36);
@@ -453,8 +555,6 @@
             document.getElementById('sidebarDrawer').classList.remove('open');
             document.getElementById('sidebarBackdrop').classList.remove('show');
 
-            if(sectionId === 'collectedFees') filterCollectedFees();
-
             if (pushState && location.hash !== '#' + sectionId) {
                 history.pushState({ section: sectionId }, '', '#' + sectionId);
             }
@@ -468,9 +568,8 @@
                 return;
             }
 
-            errDiv.innerText = "सत्यापन हो रहा है, कृपया प्रतीक्षा करें...";
+            errDiv.innerText = "सत्यापन हो रहा है...";
 
-            // बैकएंड को कोड और इस डिवाइस का UUID भेजा जा रहा है
             fetch(`${WEB_APP_URL}?code=${encodeURIComponent(code)}&device=${encodeURIComponent(deviceUuid)}`)
                 .then(res => res.json())
                 .then(data => {
@@ -489,16 +588,15 @@
                             
                             initApp();
                         } else {
-                            errDiv.innerText = "आपका खाता Inactive है। कृपया एडमिन से संपर्क करें।";
+                            errDiv.innerText = "आपका खाता Inactive है।";
                         }
                     } else {
-                        // यदि सर्वर कहे कि यह कोड किसी अन्य डिवाइस पर रजिस्टर्ड है
-                        errDiv.innerText = data.message || "यह सेंटर कोड अमान्य है या किसी अन्य डिवाइस पर पहले से लॉक है!";
+                        errDiv.innerText = data.message || "यह सेंटर कोड अमान्य है!";
                     }
                 })
                 .catch(err => {
                     console.error(err);
-                    errDiv.innerText = "कनेक्शन त्रुटि! कृपया इंटरनेट चेक करें।";
+                    errDiv.innerText = "कनेक्शन त्रुटि!";
                 });
         }
 
@@ -511,15 +609,15 @@
             document.getElementById('settingSchoolName').value = schoolInfo.name;
             document.getElementById('settingMobile').value = schoolInfo.mobile;
             document.getElementById('settingGoogleSheetUrl').value = schoolInfo.googleSheetUrl || '';
-            document.getElementById('settingReceiptTemplate').value = schoolInfo.receiptTemplate || '';
-            document.getElementById('settingReminderTemplate').value = schoolInfo.reminderTemplate || '';
+            document.getElementById('settingReceiptTemplate').value = schoolInfo.receiptTemplate;
+            document.getElementById('settingReminderTemplate').value = schoolInfo.reminderTemplate;
             
             resetForm();
             renderAll();
         }
 
         function openDuesGoogleSheet() {
-            let sheetUrl = schoolInfo.googleSheetUrl || prompt("कृपया अपनी Google Sheet का लिंक (URL) दर्ज करें:");
+            let sheetUrl = schoolInfo.googleSheetUrl || prompt("कृपया अपनी Google Sheet का लिंक दर्ज करें:");
             if(sheetUrl) {
                 schoolInfo.googleSheetUrl = sheetUrl;
                 localStorage.setItem('school_settings', JSON.stringify(schoolInfo));
@@ -527,17 +625,756 @@
             }
         }
         
-        function saveStudentData(e) { e.preventDefault(); }
-        function calculateCurrentDue(st) { return st.monthlyFee; }
-        function recalculateTotalPaid(st) {}
-        function renderStudentNameCell(st) { return st.name; }
-        function openStudentProfile(id) {}
-        function closeStudentModal() {}
-        function renderAll() {}
-        function filterCollectedFees() {}
-        function resetForm() {}
-        function saveSettings(e) { e.preventDefault(); alert('सेटिंग्स सेव हो गई हैं!'); }
-        function generateImage() {}
+        function addOtherFeeRow(nameVal = '', amountVal = '') {
+            let container = document.getElementById('otherFeesContainer');
+            let rowDiv = document.createElement('div');
+            rowDiv.className = 'other-fee-row';
+            rowDiv.style.cssText = "display: flex; gap: 8px; align-items: center;";
+            rowDiv.innerHTML = `
+                <input type="text" class="other-name" placeholder="नाम (जैसे ड्रेस, आई-कार्ड)" value="${nameVal}" style="flex-grow: 2; padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 13px;">
+                <input type="number" class="other-amount" placeholder="राशि (₹)" value="${amountVal}" style="flex-grow: 1; padding: 8px; border: 1px solid #cbd5e0; border-radius: 4px; font-size: 13px;">
+                <button type="button" onclick="this.parentElement.remove()" style="background: var(--danger-color); color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold; font-size: 13px;">✕</button>
+            `;
+            container.appendChild(rowDiv);
+        }
+
+        function processExcelUpload() {
+            let fileInput = document.getElementById('csvFileInput');
+            if (!fileInput.files || fileInput.files.length === 0) {
+                alert("कृपया पहले एक CSV फाइल चुनें!");
+                return;
+            }
+
+            let file = fileInput.files[0];
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let text = e.target.result;
+                let lines = text.split('\n');
+                let addedCount = 0;
+
+                for (let i = 1; i < lines.length; i++) {
+                    let line = lines[i].trim();
+                    if (!line) continue;
+                    let cols = line.split(',').map(c => c.trim().replace(/^"(.*)"$/, '$1'));
+                    
+                    if (cols.length >= 4) {
+                        let name = cols[0];
+                        let guardian = cols[1];
+                        let mobile = cols[2];
+                        let sClass = cols[3];
+                        let monthlyFee = parseFloat(cols[4]) || 0;
+                        let joiningDate = cols[5] ? cols[5] : new Date().toISOString().split('T')[0];
+
+                        let otherFeesList = [];
+                        if(cols[6] && cols[7]) {
+                            otherFeesList.push({ name: cols[6], amount: parseFloat(cols[7]) || 0 });
+                        }
+
+                        if (name && mobile) {
+                            let newStudent = {
+                                id: Date.now() + Math.floor(Math.random() * 1000),
+                                name: name,
+                                guardian: guardian,
+                                motherName: '',
+                                mobile: mobile,
+                                idNumber: '',
+                                idProof: '',
+                                bankIfsc: '',
+                                bankAccount: '',
+                                studentClass: sClass,
+                                monthlyFee: monthlyFee,
+                                otherFees: otherFeesList,
+                                dob: '',
+                                joiningDate: joiningDate,
+                                photo: '',
+                                status: 'active',
+                                payments: [],
+                                closingDate: ''
+                            };
+                            students.push(newStudent);
+                            addedCount++;
+                        }
+                    }
+                }
+
+                localStorage.setItem('school_students', JSON.stringify(students));
+                renderAll();
+                alert(`सफलतापूर्वक ${addedCount} छात्रों का डेटा इम्पोर्ट कर लिया गया है!`);
+                navigateTo('students');
+            };
+            reader.readAsText(file);
+        }
+
+        function saveStudentData(e) {
+            e.preventDefault();
+            let editId = document.getElementById('editStudentId').value;
+            let name = document.getElementById('studentName').value.trim();
+            let guardian = document.getElementById('guardianName').value.trim();
+            let motherName = document.getElementById('motherName').value.trim();
+            let mobile = document.getElementById('mobileNumber').value.trim();
+            let idNum = document.getElementById('idNumber').value.trim();
+            let idProof = document.getElementById('idProof').value.trim();
+            let bankIfsc = document.getElementById('bankIfsc').value.trim();
+            let bankAccount = document.getElementById('bankAccount').value.trim();
+            let sClass = document.getElementById('studentClass').value.trim();
+            let monthlyFee = parseFloat(document.getElementById('monthlyFee').value) || 0;
+            let dob = document.getElementById('dob').value;
+            let joiningDate = document.getElementById('joiningDate').value;
+            let photoInput = document.getElementById('studentPhotoInput');
+
+            let otherFeesList = [];
+            document.querySelectorAll('.other-fee-row').forEach(row => {
+                let n = row.querySelector('.other-name').value.trim();
+                let a = parseFloat(row.querySelector('.other-amount').value) || 0;
+                if(n && a > 0) {
+                    otherFeesList.push({ name: n, amount: a });
+                }
+            });
+
+            let processSave = (photoData) => {
+                if (editId) {
+                    let st = students.find(s => s.id == editId);
+                    if (st) {
+                        st.name = name;
+                        st.guardian = guardian;
+                        st.motherName = motherName;
+                        st.mobile = mobile;
+                        st.idNumber = idNum;
+                        st.idProof = idProof;
+                        st.bankIfsc = bankIfsc;
+                        st.bankAccount = bankAccount;
+                        st.studentClass = sClass;
+                        st.monthlyFee = monthlyFee;
+                        st.otherFees = otherFeesList;
+                        st.dob = dob;
+                        st.joiningDate = joiningDate;
+                        if (photoData) {
+                            st.photo = photoData;
+                        }
+                    }
+                    alert('डेटा सफलतापूर्वक अपडेट कर दिया गया है!');
+                } else {
+                    let newStudent = {
+                        id: Date.now(),
+                        name: name,
+                        guardian: guardian,
+                        motherName: motherName,
+                        mobile: mobile,
+                        idNumber: idNum,
+                        idProof: idProof,
+                        bankIfsc: bankIfsc,
+                        bankAccount: bankAccount,
+                        studentClass: sClass,
+                        monthlyFee: monthlyFee,
+                        otherFees: otherFeesList,
+                        dob: dob,
+                        joiningDate: joiningDate,
+                        photo: photoData || '',
+                        status: 'active',
+                        payments: [],
+                        closingDate: ''
+                    };
+                    students.push(newStudent);
+                    alert('नया एडमिशन सफलतापूर्वक सेव हो गया है!');
+                }
+
+                localStorage.setItem('school_students', JSON.stringify(students));
+                resetForm();
+                renderAll();
+                navigateTo('students');
+            };
+
+            if (photoInput.files && photoInput.files[0]) {
+                let reader = new FileReader();
+                reader.onload = function(uploadEvent) {
+                    processSave(uploadEvent.target.result);
+                };
+                reader.readAsDataURL(photoInput.files[0]);
+            } else {
+                processSave(null);
+            }
+        }
+
+        function addMonths(dateStr, months) {
+            let d = new Date(dateStr);
+            if (isNaN(d.getTime())) d = new Date();
+            d.setMonth(d.getMonth() + months);
+            return d.toISOString().split('T')[0];
+        }
+
+        function addDays(dateStr, days) {
+            let d = new Date(dateStr);
+            if (isNaN(d.getTime())) d = new Date();
+            d.setDate(d.getDate() + days);
+            return d.toISOString().split('T')[0];
+        }
+
+        function getStudentDateRange(st, specificPaymentIndex = null) {
+            let startBase = st.joiningDate || new Date().toISOString().split('T')[0];
+            let monthly = st.monthlyFee || 1;
+
+            let monthlyPaymentsTotal = 0;
+            if(st.payments) {
+                for(let i=0; i<=(specificPaymentIndex !== null ? specificPaymentIndex : st.payments.length - 1); i++) {
+                    if(!st.payments[i].feeType || st.payments[i].feeType === 'monthly') {
+                        if(specificPaymentIndex === null || i < specificPaymentIndex) {
+                            monthlyPaymentsTotal += parseFloat(st.payments[i].amount || 0);
+                        }
+                    }
+                }
+            }
+
+            if (specificPaymentIndex !== null) {
+                let pItem = st.payments[specificPaymentIndex];
+                let isMonthly = (!pItem.feeType || pItem.feeType === 'monthly');
+                
+                let cumulativePaidBeforeThis = 0;
+                for(let i=0; i<specificPaymentIndex; i++) {
+                    if(!st.payments[i].feeType || st.payments[i].feeType === 'monthly') {
+                        cumulativePaidBeforeThis += parseFloat(st.payments[i].amount || 0);
+                    }
+                }
+                let currentReceiptAmount = isMonthly ? parseFloat(pItem.amount || 0) : 0;
+
+                let fromFractionMonths = cumulativePaidBeforeThis / monthly;
+                let fromDate = addDays(startBase, Math.round(fromFractionMonths * 30));
+
+                let toFractionMonths = (cumulativePaidBeforeThis + currentReceiptAmount) / monthly;
+                let toDate = addDays(startBase, Math.round(toFractionMonths * 30));
+                if(!isMonthly) toDate = fromDate;
+
+                return { from: fromDate, to: toDate };
+            } else {
+                let totalMonthlyPaid = 0;
+                if(st.payments) {
+                    st.payments.forEach(p => {
+                        if(!p.feeType || p.feeType === 'monthly') totalMonthlyPaid += parseFloat(p.amount || 0);
+                    });
+                }
+                let coveredMonthsFraction = totalMonthlyPaid / monthly;
+                
+                let fromDate = addDays(startBase, Math.round(coveredMonthsFraction * 30));
+                
+                let currentDue = calculateCurrentDue(st);
+                let dueMonthsFraction = currentDue / monthly;
+                let toDate = addDays(fromDate, Math.round(dueMonthsFraction * 30));
+                if(fromDate === toDate) {
+                    toDate = addMonths(fromDate, 1);
+                }
+
+                return { from: fromDate, to: toDate };
+            }
+        }
+
+        function calculateCurrentDue(st) {
+            let monthly = st.monthlyFee || 0;
+            let start = new Date(st.joiningDate || Date.now());
+            let now = (st.status === 'closed' && st.closingDate) ? new Date(st.closingDate) : new Date();
+            
+            let diffMonths = (now.getFullYear() - start.getFullYear()) * 12 + (now.getMonth() - start.getMonth()) + 1;
+            if(diffMonths < 1) diffMonths = 1;
+            
+            let totalExpectedMonthly = diffMonths * monthly;
+            let totalMonthlyPaid = 0;
+            let totalOtherPaid = 0;
+
+            if(st.payments) {
+                st.payments.forEach(p => {
+                    if(p.feeType === 'other') {
+                        totalOtherPaid += parseFloat(p.amount || 0);
+                    } else {
+                        totalMonthlyPaid += parseFloat(p.amount || 0);
+                    }
+                });
+            }
+
+            let monthlyDue = totalExpectedMonthly - totalMonthlyPaid;
+            
+            let initialOtherTotal = 0;
+            if(st.otherFees && Array.isArray(st.otherFees)) {
+                st.otherFees.forEach(of => initialOtherTotal += parseFloat(of.amount || 0));
+            } else if(st.otherFeeAmount) {
+                initialOtherTotal = parseFloat(st.otherFeeAmount) || 0;
+            }
+
+            let remainingOtherDue = initialOtherTotal - totalOtherPaid;
+            if(remainingOtherDue < 0) remainingOtherDue = 0;
+
+            let totalDue = (monthlyDue > 0 ? monthlyDue : 0) + remainingOtherDue;
+            return totalDue;
+        }
+
+        function formatOtherFeeText(st) {
+            let detailsArr = [];
+            if(st.otherFees && Array.isArray(st.otherFees)) {
+                st.otherFees.forEach(of => {
+                    let ofAmt = parseFloat(of.amount || 0);
+                    let paidForThis = 0;
+                    if(st.payments) {
+                        st.payments.forEach(p => {
+                            if(p.feeType === 'other' && p.otherName === of.name) {
+                                paidForThis += parseFloat(p.amount || 0);
+                            }
+                        });
+                    }
+                    let remForThis = ofAmt - paidForThis;
+                    if(remForThis < 0) remForThis = 0;
+
+                    if(remForThis > 0) {
+                        detailsArr.push(`• ${of.name}: ₹${remForThis} (बकाया)`);
+                    } else {
+                        detailsArr.push(`• ${of.name}: ₹0 (भुगतान हो चुका)`);
+                    }
+                });
+            }
+
+            if (detailsArr.length > 0) {
+                return detailsArr.join('\n');
+            }
+            return "• कोई अन्य बकाया नहीं है";
+        }
+
+        function openStudentProfile(id) {
+            let st = students.find(s => s.id == id);
+            if(!st) return;
+
+            let paymentsHtml = '';
+            if(st.payments && st.payments.length > 0) {
+                st.payments.forEach((p, index) => {
+                    let typeLabel = (p.feeType === 'other') ? `अन्य शुल्क (${p.otherName || 'विवरण'})` : 'मासिक फीस';
+                    paymentsHtml += `
+                        <tr>
+                            <td>${p.date}</td>
+                            <td><b>${typeLabel}</b></td>
+                            <td>₹${p.amount}</td>
+                            <td>
+                                <button class="edit-btn" onclick="editPayment(${st.id}, ${index})">एडिट</button>
+                                <button class="close-btn" onclick="deletePayment(${st.id}, ${index})">डिलीट</button>
+                                <button class="whatsapp-btn" onclick="sendPaidBillWhatsApp(${st.id}, ${index})">WhatsApp</button>
+                                <button class="sms-btn" onclick="sendPaidBillSMS(${st.id}, ${index})">SMS</button>
+                            </td>
+                        </tr>
+                    `;
+                });
+            } else {
+                paymentsHtml = `<tr><td colspan="4" style="text-align: center; color: #718096;">कोई भुगतान इतिहास उपलब्ध नहीं है।</td></tr>`;
+            }
+
+            let content = `
+                <h3>छात्र विवरण: ${st.name}</h3>
+                <p><b>गार्जियन:</b> ${st.guardian} | <b>माता का नाम:</b> ${st.motherName || '-'}</p>
+                <p><b>मोबाइल:</b> ${st.mobile} | <b>रोल/आईडी:</b> ${st.idNumber || '-'}</p>
+                <p><b>आईडी प्रूफ:</b> ${st.idProof || '-'}</p>
+                <p><b>बैंक IFSC:</b> ${st.bankIfsc || '-'} | <b>खाता संख्या:</b> ${st.bankAccount || '-'}</p>
+                <p><b>क्लास:</b> ${st.studentClass} | <b>मासिक फीस:</b> ₹${st.monthlyFee}</p>
+                <hr style="margin: 15px 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; flex-wrap: wrap; gap: 5px;">
+                    <h4>भुगतान इतिहास</h4>
+                    <div style="display: flex; gap: 5px;">
+                        <button class="whatsapp-btn" onclick="sendFullHistoryWhatsApp(${st.id})">📲 पूरी हिस्ट्री WA</button>
+                        <button class="sms-btn" onclick="sendFullHistorySMS(${st.id})">💬 पूरी हिस्ट्री SMS</button>
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>दिनांक</th>
+                                <th>प्रकार</th>
+                                <th>राशि</th>
+                                <th>एक्शन</th>
+                            </tr>
+                        </thead>
+                        <tbody>${paymentsHtml}</tbody>
+                    </table>
+                </div>
+            `;
+            document.getElementById('modalBodyContent').innerHTML = content;
+            document.getElementById('studentModal').style.display = 'flex';
+        }
+
+        function closeStudentModal() {
+            document.getElementById('studentModal').style.display = 'none';
+        }
+
+        function openFeeModal(id) {
+            let st = students.find(s => s.id == id);
+            if(!st) return;
+
+            document.getElementById('feeStudentId').value = id;
+            document.getElementById('feeTypeSelect').value = 'monthly';
+            
+            let dropdown = document.getElementById('paidOtherFeeDropdown');
+            dropdown.innerHTML = '';
+            
+            if(st.otherFees && st.otherFees.length > 0) {
+                st.otherFees.forEach(of => {
+                    let opt = document.createElement('option');
+                    opt.value = of.name;
+                    opt.text = `${of.name} (कुल: ₹${of.amount})`;
+                    dropdown.appendChild(opt);
+                });
+            } else {
+                let opt = document.createElement('option');
+                opt.value = 'अन्य फीस';
+                opt.text = 'अन्य फीस (नाम टाइप करें)';
+                dropdown.appendChild(opt);
+            }
+
+            document.getElementById('otherFeeSelectGroup').style.display = 'none';
+            document.getElementById('payAmount').value = '';
+            document.getElementById('payDate').value = new Date().toISOString().split('T')[0];
+            document.getElementById('feeModal').style.display = 'flex';
+        }
+
+        function toggleFeeTypeFields() {
+            let fType = document.getElementById('feeTypeSelect').value;
+            let selectGroup = document.getElementById('otherFeeSelectGroup');
+            if(fType === 'other') {
+                selectGroup.style.display = 'block';
+            } else {
+                selectGroup.style.display = 'none';
+            }
+        }
+
+        function closeFeeModal() {
+            document.getElementById('feeModal').style.display = 'none';
+        }
+
+        function submitFee(e) {
+            e.preventDefault();
+            let id = document.getElementById('feeStudentId').value;
+            let feeType = document.getElementById('feeTypeSelect').value;
+            let otherName = "";
+            
+            if(feeType === 'other') {
+                otherName = document.getElementById('paidOtherFeeDropdown').value;
+            }
+
+            let amount = parseFloat(document.getElementById('payAmount').value);
+            let date = document.getElementById('payDate').value;
+
+            let st = students.find(s => s.id == id);
+            if(st) {
+                if(!st.payments) st.payments = [];
+                st.payments.push({ 
+                    feeType: feeType, 
+                    otherName: otherName, 
+                    amount: amount, 
+                    date: date 
+                });
+                localStorage.setItem('school_students', JSON.stringify(students));
+                closeFeeModal();
+                renderAll();
+                alert('फीस सफलतापूर्वक जमा हो गई है!');
+            }
+        }
+
+        function editPayment(studentId, paymentIndex) {
+            let st = students.find(s => s.id == studentId);
+            if(!st || !st.payments[paymentIndex]) return;
+            
+            let p = st.payments[paymentIndex];
+            let newAmount = prompt("नयी राशि दर्ज करें:", p.amount);
+            if(newAmount !== null && !isNaN(newAmount)) {
+                p.amount = parseFloat(newAmount);
+                let newDate = prompt("नयी तारीख दर्ज करें (YYYY-MM-DD):", p.date);
+                if(newDate) p.date = newDate;
+
+                localStorage.setItem('school_students', JSON.stringify(students));
+                renderAll();
+                openStudentProfile(studentId);
+                alert('अपडेट हो गया!');
+            }
+        }
+
+        function deletePayment(studentId, paymentIndex) {
+            let st = students.find(s => s.id == studentId);
+            if(!st || !st.payments[paymentIndex]) return;
+
+            if(confirm("क्या आप इस भुगतान को डिलीट करना चाहते हैं?")) {
+                st.payments.splice(paymentIndex, 1);
+                localStorage.setItem('school_students', JSON.stringify(students));
+                renderAll();
+                openStudentProfile(studentId);
+                alert('डिलीट कर दिया गया!');
+            }
+        }
+
+        function sendPaidBillWhatsApp(studentId, paymentIndex) {
+            let st = students.find(s => s.id == studentId);
+            if(!st || !st.payments[paymentIndex]) return;
+            let p = st.payments[paymentIndex];
+            let range = getStudentDateRange(st, paymentIndex);
+
+            let template = schoolInfo.receiptTemplate;
+            let message = template
+                .replace(/\[SchoolName\]/g, schoolInfo.name)
+                .replace(/\[StudentName\]/g, st.name)
+                .replace(/\[Class\]/g, st.studentClass)
+                .replace(/\[Amount\]/g, p.amount)
+                .replace(/\[Date\]/g, p.date)
+                .replace(/\[FromDate\]/g, range.from)
+                .replace(/\[ToDate\]/g, range.to)
+                .replace(/\[OtherFeeDetails\]/g, formatOtherFeeText(st))
+                .replace(/\[TotalDue\]/g, calculateCurrentDue(st));
+
+            window.open(`https://wa.me/91${st.mobile}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function sendPaidBillSMS(studentId, paymentIndex) {
+            let st = students.find(s => s.id == studentId);
+            if(!st || !st.payments[paymentIndex]) return;
+            let p = st.payments[paymentIndex];
+            let message = `${schoolInfo.name}: Rs.${p.amount} prapt hue. Total Due: Rs.${calculateCurrentDue(st)}`;
+            window.location.href = `sms:${st.mobile}?body=${encodeURIComponent(message)}`;
+        }
+
+        function sendReminderWhatsApp(studentId) {
+            let st = students.find(s => s.id == studentId);
+            if(!st) return;
+            let range = getStudentDateRange(st, null);
+
+            let template = schoolInfo.reminderTemplate;
+            let message = template
+                .replace(/\[SchoolName\]/g, schoolInfo.name)
+                .replace(/\[StudentName\]/g, st.name)
+                .replace(/\[Class\]/g, st.studentClass)
+                .replace(/\[FromDate\]/g, range.from)
+                .replace(/\[ToDate\]/g, range.to)
+                .replace(/\[OtherFeeDetails\]/g, formatOtherFeeText(st))
+                .replace(/\[TotalDue\]/g, calculateCurrentDue(st));
+
+            window.open(`https://wa.me/91${st.mobile}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function sendSMSReminder(studentId) {
+            let st = students.find(s => s.id == studentId);
+            if(!st) return;
+            let message = `School: ${schoolInfo.name}, ${st.name} ki kul bakaya fees Rs.${calculateCurrentDue(st)} hai. Kripya jama karein.`;
+            window.location.href = `sms:${st.mobile}?body=${encodeURIComponent(message)}`;
+        }
+
+        function sendFullHistoryWhatsApp(studentId) {
+            let st = students.find(s => s.id == studentId);
+            if(!st) return;
+            let range = getStudentDateRange(st, null);
+
+            let template = schoolInfo.reminderTemplate;
+            let message = template
+                .replace(/\[SchoolName\]/g, schoolInfo.name)
+                .replace(/\[StudentName\]/g, st.name)
+                .replace(/\[Class\]/g, st.studentClass)
+                .replace(/\[FromDate\]/g, range.from)
+                .replace(/\[ToDate\]/g, range.to)
+                .replace(/\[OtherFeeDetails\]/g, formatOtherFeeText(st))
+                .replace(/\[TotalDue\]/g, calculateCurrentDue(st));
+
+            window.open(`https://wa.me/91${st.mobile}?text=${encodeURIComponent(message)}`, '_blank');
+        }
+
+        function sendFullHistorySMS(studentId) {
+            let st = students.find(s => s.id == studentId);
+            if(!st) return;
+            let message = `${schoolInfo.name}: ${st.name} ki kul bakaya Rs.${calculateCurrentDue(st)} hai.`;
+            window.location.href = `sms:${st.mobile}?body=${encodeURIComponent(message)}`;
+        }
+
+        function checkFilterMatch(st, sectionKey) {
+            let nameVal = document.getElementById(`searchByName_${sectionKey}`).value.toLowerCase();
+            let classVal = document.getElementById(`filterByClass_${sectionKey}`).value.toLowerCase();
+            let rollVal = document.getElementById(`filterByRoll_${sectionKey}`).value.toLowerCase();
+
+            if (nameVal && !st.name.toLowerCase().includes(nameVal)) return false;
+            if (classVal && !st.studentClass.toLowerCase().includes(classVal)) return false;
+            if (rollVal && !(st.idNumber || '').toLowerCase().includes(rollVal)) return false;
+
+            return true;
+        }
+
+        function renderStudentBoxes(list, containerId, sectionKey) {
+            let container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            let filteredList = list.filter(st => checkFilterMatch(st, sectionKey));
+
+            if (filteredList.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#718096; width:100%; padding:20px;">कोई डेटा उपलब्ध नहीं है।</p>`;
+                return;
+            }
+
+            filteredList.forEach(st => {
+                let avatarHtml = st.photo 
+                    ? `<img src="${st.photo}" class="student-thumb">` 
+                    : `<div class="student-avatar-placeholder">${st.name.charAt(0).toUpperCase()}</div>`;
+
+                let dueVal = calculateCurrentDue(st);
+                let otherTxt = formatOtherFeeText(st);
+
+                let box = document.createElement('div');
+                box.className = 'student-box';
+                box.innerHTML = `
+                    <div class="student-box-header">
+                        ${avatarHtml}
+                        <div style="flex-grow:1; overflow:hidden;">
+                            <div class="student-box-title" onclick="openStudentProfile(${st.id})">${st.name}</div>
+                            <div style="font-size:11px; color:#718096;">रोल/आईडी: ${st.idNumber || 'N/A'} | गार्जियन: ${st.guardian}</div>
+                        </div>
+                    </div>
+                    <div class="student-box-info">
+                        <span>📱 ${st.mobile}</span>
+                        <span>🎓 क्लास: <b>${st.studentClass}</b></span>
+                    </div>
+                    <div class="student-box-info">
+                        <span>मासिक: ₹${st.monthlyFee}</span>
+                        <span style="color:var(--danger-color);">कुल बकाया: <b>₹${dueVal}</b></span>
+                    </div>
+                    ${otherTxt ? `<div style="font-size:11px; color:var(--warning-color); white-space: pre-line;">${otherTxt}</div>` : ''}
+                    <div class="student-box-footer">
+                        <button class="fee-btn" onclick="openFeeModal(${st.id})">💵 फीस लें</button>
+                        <button class="whatsapp-btn" onclick="sendReminderWhatsApp(${st.id})">📲 WA</button>
+                        <button class="sms-btn" onclick="sendSMSReminder(${st.id})">💬 SMS</button>
+                        <button class="edit-btn" onclick="editStudent(${st.id})">✏️ एडिट</button>
+                        <button class="close-btn" onclick="closeStudentAccount(${st.id})">❌ क्लोज</button>
+                    </div>
+                `;
+                container.appendChild(box);
+            });
+        }
+
+        function renderAll() {
+            let activeList = students.filter(s => s.status !== 'closed');
+            let closedList = students.filter(s => s.status === 'closed');
+
+            document.getElementById('totalStudents').innerText = activeList.length;
+            
+            let totalColl = 0, totalDue = 0, totalClosedDue = 0;
+            students.forEach(s => {
+                if(s.payments) s.payments.forEach(p => totalColl += parseFloat(p.amount || 0));
+                if(s.status === 'closed') totalClosedDue += calculateCurrentDue(s);
+                else totalDue += calculateCurrentDue(s);
+            });
+
+            document.getElementById('totalCollectedFees').innerText = '₹ ' + totalColl;
+            document.getElementById('totalDueFees').innerText = '₹ ' + totalDue;
+            document.getElementById('totalClosedDue').innerText = '₹ ' + totalClosedDue;
+
+            // 1. एक्टिव छात्र सूची
+            renderStudentBoxes(activeList, 'studentCardsContainer', 'students');
+
+            // 2. फीस बकाया वाले छात्र
+            let dueList = activeList.filter(s => calculateCurrentDue(s) > 0);
+            renderStudentBoxes(dueList, 'dueCardsContainer', 'dues');
+
+            // 3. जमा फीस इतिहास (Collected Fees Table) - फ़िल्टर के साथ
+            let collTbody = document.getElementById('collectedTableBody');
+            collTbody.innerHTML = '';
+            
+            students.forEach(st => {
+                if(!checkFilterMatch(st, 'collected')) return;
+                
+                if(st.payments) {
+                    st.payments.forEach((p, pIndex) => {
+                        let tLabel = (p.feeType === 'other') ? `अन्य (${p.otherName || 'विवरण'})` : 'मासिक फीस';
+                        let tr = document.createElement('tr');
+                        tr.innerHTML = `
+                            <td>${p.date}</td>
+                            <td>${st.idNumber || '-'}</td>
+                            <td>${st.name}</td>
+                            <td>${st.guardian}</td>
+                            <td>${st.mobile}</td>
+                            <td>${st.studentClass}</td>
+                            <td><b>${tLabel}</b></td>
+                            <td style="color: var(--success-color); font-weight: bold;">₹${p.amount}</td>
+                            <td><button class="whatsapp-btn" onclick="sendPaidBillWhatsApp(${st.id}, ${pIndex})">📲 WhatsApp</button></td>
+                        `;
+                        collTbody.appendChild(tr);
+                    });
+                }
+            });
+
+            // 4. क्लोज्ड छात्र (Closed Students Table) - फ़िल्टर के साथ
+            let closedTbody = document.getElementById('closedTableBody');
+            closedTbody.innerHTML = '';
+            
+            closedList.forEach(st => {
+                if(!checkFilterMatch(st, 'closed')) return;
+
+                let tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${st.idNumber || '-'}</td>
+                    <td>${st.name}</td>
+                    <td>${st.guardian}</td>
+                    <td>${st.mobile}</td>
+                    <td>${st.studentClass}</td>
+                    <td>${st.closingDate || '-'}</td>
+                    <td>₹${calculateCurrentDue(st)}</td>
+                    <td><button class="whatsapp-btn" onclick="sendReminderWhatsApp(${st.id})">📲 रिमाइंडर WA</button></td>
+                `;
+                closedTbody.appendChild(tr);
+            });
+        }
+
+        function closeStudentAccount(id) {
+            let st = students.find(s => s.id == id);
+            if(st && confirm(`क्या आप ${st.name} का खाता क्लोज करना चाहते हैं?`)) {
+                st.status = 'closed';
+                st.closingDate = new Date().toISOString().split('T')[0];
+                localStorage.setItem('school_students', JSON.stringify(students));
+                renderAll();
+                alert('खाता क्लोज कर दिया गया है!');
+            }
+        }
+
+        function resetForm() {
+            document.getElementById('admissionForm').reset();
+            document.getElementById('editStudentId').value = '';
+            document.getElementById('otherFeesContainer').innerHTML = "";
+            document.getElementById('formTitle').innerText = "छात्र एडमिशन एवं रजिस्ट्रेशन फॉर्म";
+            document.getElementById('formSubmitBtn').innerText = "रजिस्टर करें और सेव करें";
+            document.getElementById('cancelEditBtn').style.display = 'none';
+        }
+
+        function editStudent(id) {
+            let st = students.find(s => s.id == id);
+            if(!st) return;
+            document.getElementById('editStudentId').value = st.id;
+            document.getElementById('studentName').value = st.name;
+            document.getElementById('guardianName').value = st.guardian;
+            document.getElementById('motherName').value = st.motherName || '';
+            document.getElementById('mobileNumber').value = st.mobile;
+            document.getElementById('idNumber').value = st.idNumber || '';
+            document.getElementById('idProof').value = st.idProof || '';
+            document.getElementById('bankIfsc').value = st.bankIfsc || '';
+            document.getElementById('bankAccount').value = st.bankAccount || '';
+            document.getElementById('studentClass').value = st.studentClass;
+            document.getElementById('monthlyFee').value = st.monthlyFee;
+            document.getElementById('dob').value = st.dob || '';
+            document.getElementById('joiningDate').value = st.joiningDate || '';
+            
+            let container = document.getElementById('otherFeesContainer');
+            container.innerHTML = '';
+            if(st.otherFees && Array.isArray(st.otherFees)) {
+                st.otherFees.forEach(of => addOtherFeeRow(of.name, of.amount));
+            }
+
+            document.getElementById('formTitle').innerText = "छात्र विवरण एडिट करें";
+            document.getElementById('formSubmitBtn').innerText = "अपडेट करें";
+            document.getElementById('cancelEditBtn').style.display = 'inline-block';
+            navigateTo('admission');
+        }
+
+        function saveSettings(e) { 
+            e.preventDefault(); 
+            schoolInfo.name = document.getElementById('settingSchoolName').value;
+            schoolInfo.mobile = document.getElementById('settingMobile').value;
+            schoolInfo.googleSheetUrl = document.getElementById('settingGoogleSheetUrl').value;
+            schoolInfo.receiptTemplate = document.getElementById('settingReceiptTemplate').value;
+            schoolInfo.reminderTemplate = document.getElementById('settingReminderTemplate').value;
+            
+            localStorage.setItem('school_settings', JSON.stringify(schoolInfo));
+            alert('सेटिंग्स सफलतापूर्वक सेव हो गई हैं!'); 
+        }
     </script>
 </body>
 </html>
